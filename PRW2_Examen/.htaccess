@@ -1,0 +1,19 @@
+﻿<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+
+RewriteEngine on
+
+RewriteBase /PRW"_Examen
+
+# Add www if needed
+RewriteCond %{HTTP_HOST} ^mondomaine.com$
+RewriteRule ^(.*) 											http://www.mondomaine.com/$1  [QSA,L,R=301]	
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index
+RewriteRule ^(.*) 											index.php
+
+</IfModule>
